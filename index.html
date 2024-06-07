@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sort my Name App by Amey</title>
+        <style>
+            * {
+                font-size: 40px;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            body {
+                background: linear-gradient(to right, #ff7e5f, #feb47b);
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+            }
+            h1 {
+                color: white;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            }
+            form {
+                background: rgba(255, 255, 255, 0.2);
+                padding: 40px;
+                border-radius: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
+            }
+            input[type="text"] {
+                width: 80%;
+                padding: 10px;
+                border: 2px solid #fff;
+                border-radius: 5px;
+                font-size: 20px;
+                margin-bottom: 20px;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            input[type="submit"], input[type="button"] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 15px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 20px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                margin: 5px;
+            }
+            input[type="submit"]:hover, input[type="button"]:hover {
+                background-color: #45a049;
+            }
+            h2 {
+                color: white;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1>Sort by Name App</h1>
+            <form onsubmit="mysort()">
+                <input type="text" placeholder="Enter your Name" id="name" />
+                <br/><br/>
+                <input type="submit" value="Sort" />
+                <input type="button" value="Clear" onclick="clearForm()" />
+                <br/><br/>
+                <h2 id="msg"></h2>
+            </form>
+        </center>
+
+        <script>
+            function mysort() {
+                event.preventDefault();
+                let name = document.getElementById("name");
+                let msg = document.getElementById("msg");
+
+                if (name.value.trim() == "") {
+                    alert("Name can't be empty");
+                    msg.innerHTML = "";
+                    name.focus();
+                    return;
+                }
+                let n = name.value.replace(/\s/g, "");  // Remove spaces
+
+                // Sort the name and join with commas
+                let sortedName = n.split("").sort().join(",");
+
+                msg.innerHTML = `Given name: ${name.value}<br/>Sorted name: ${sortedName}`;
+            }
+
+            function clearForm() {
+                document.getElementById("name").value = "";
+                document.getElementById("msg").innerHTML = "";
+            }
+        </script>
+    </body>
+</html>
